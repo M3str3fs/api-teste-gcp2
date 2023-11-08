@@ -1,4 +1,4 @@
-FROM node:erbium-alpine3.14
+FROM node:18-alpine
 
 WORKDIR /app
 
