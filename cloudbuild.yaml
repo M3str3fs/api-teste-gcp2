@@ -9,6 +9,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'hello', '--image', 'gcr.io/shining-smoke-403810/18-alpine', '--region', 'us-central1', '--platform', 'managed', '--port', '3000']
+  args: ['run', 'deploy', 'hello', '--image', 'gcr.io/shining-smoke-403810/18-alpine', '--region', 'us-central1', '--platform', 'managed', '--port', '8080']
 images:
 - gcr.io/shining-smoke-403810/18-alpine
