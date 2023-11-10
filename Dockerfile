@@ -1,14 +1,23 @@
+# Base image
 FROM node:18-alpine
 
+# Install pnpm
+RUN npm install -g pnpm
+
+# Set the working directory
 WORKDIR /app
 
-COPY package.json .
+# Copy package.json and pnpm-lock.yaml files to the container
+COPY package.json pnpm-lock.yaml ./
 
-RUN npm
+# Install dependencies using pnpm
+RUN pnpm install
 
+# Copy the application code to the container
 COPY . .
 
-RUN nest build
-
+# Expose the port that the application will be running on
 EXPOSE 3000
-CMD [ "npm", "run", "start:prod" ]
+
+# Start the application
+CMD [ "pnpm", "run", "start:dev" ]
