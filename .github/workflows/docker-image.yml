@@ -38,6 +38,6 @@ jobs:
       # deploy image with new service name for force recreation
       - name: Deploy Docker image
         run: |
-          gcloud run deploy $SERVICE_NAME --image $IMAGE_NAME --region us-central1 --memory 128Mi --min-instances 1 --max-instances 1 --platform managed --port 3000 --allow-unauthenticated
+          gcloud run deploy $SERVICE_NAME --image $IMAGE_NAME --region us-central1 --memory 128Mi --min-instances 1 --max-instances 2 --platform managed --port 3000 --allow-unauthenticated
 
       
