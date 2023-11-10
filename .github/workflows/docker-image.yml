@@ -39,5 +39,5 @@ jobs:
       - name: Deploy Docker image
         run: |
           gcloud run deploy $SERVICE_NAME --image $IMAGE_NAME --region us-central1 --memory 128Mi --min-instances 1 --max-instances 1 --platform managed --port 3000 --allow-unauthenticated
-    
-      SERVICE_NAME: "hello-$(date +%Y%m%d%H%M%S)"  # Adicione um sufixo de data/hora para criar um nome de serviço exclusivo
+
+      
