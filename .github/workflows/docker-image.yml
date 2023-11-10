@@ -28,7 +28,7 @@ jobs:
 
       # build image
       - name: Build Docker image
-        run:  docker buildx build --platform linux/amd64 -t {project-name} .
+        run:  docker buildx build --platform linux/amd64 -t teste-1042 .
       # push image to registry
       - name: Push Docker image
         run: docker push gcr.io/teste-1042/18-alpine
