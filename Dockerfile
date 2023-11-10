@@ -16,5 +16,7 @@ RUN npm install
 # Copy the application code to the container
 COPY . .
 
+# export port
+EXPOSE 3000
 # Start the application
 CMD [ "pnpm", "run", "start:dev" ]
