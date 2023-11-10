@@ -39,5 +39,3 @@ jobs:
       # deploy image
       - name: Deploy Docker image
         run: gcloud run deploy site --image $IMAGE_NAME --region us-central1 --memory 128Mi --min-instances 1 --max-instances 9 --platform managed --port 3000 --allow-unauthenticated
-
-      
