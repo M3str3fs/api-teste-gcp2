@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Install pnpm
-RUN npm install -g pnpm
+# RUN npm install -g pnpm
 
 # Set the working directory
 WORKDIR /app
