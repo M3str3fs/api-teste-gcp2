@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Install pnpm
-RUN npm install -g pnpm
+RUN pnpm install -g pnpm
 
 # Set the working directory
 WORKDIR /app
@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the application
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "pnpm", "run", "start:prod" ]
