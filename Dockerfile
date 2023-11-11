@@ -1,17 +1,17 @@
 # Base image
-FROM nginx:alpine
+FROM node:18-alpine
 
 # Install pnpm
-RUN pnpm install -g pnpm
+RUN npm install -g pnpm
 
 # Set the working directory
 WORKDIR /app
 
 # Copy package.json and pnpm-lock.yaml files to the container
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies using pnpm
-RUN pnpm install -f
+RUN pnpm install
 
 # Copy the application code to the container
 COPY . .
@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the application
-CMD [ "pnpm", "run", "start:prod" ]
+CMD [ "pnpm", "run", "start:dev" ]
