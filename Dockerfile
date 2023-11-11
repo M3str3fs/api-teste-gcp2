@@ -1,23 +1,23 @@
 # Base image
 FROM node:18-alpine
 
-# Install pnpm
-RUN npm install -g pnpm
+# # Install pnpm
+# RUN npm install -g pnpm
 
-# Set the working directory
-WORKDIR /app
+# # Set the working directory
+# WORKDIR /app
 
-# Copy package.json and pnpm-lock.yaml files to the container
-COPY package.json ./
+# # Copy package.json and pnpm-lock.yaml files to the container
+# COPY package.json ./
 
-# Install dependencies using pnpm
-RUN npm install -f
+# # Install dependencies using pnpm
+# RUN npm install -f
 
-# Copy the application code to the container
-COPY . .
+# # Copy the application code to the container
+# COPY . .
 
-# Expose the port that the application will be running on
-EXPOSE 3000
+# # Expose the port that the application will be running on
+# EXPOSE 3000
 
-# Start the application
-CMD [ "npm", "run", "start:prod" ]
+# # Start the application
+# CMD [ "npm", "run", "start:prod" ]
