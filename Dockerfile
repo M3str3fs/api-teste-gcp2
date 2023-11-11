@@ -9,9 +9,10 @@ WORKDIR /app
 
 # Copy package.json and pnpm-lock.yaml files to the container
 COPY package.json ./
+COPY pnpm-lock.yaml ./
 
 # Install dependencies using pnpm
-RUN npm install -f
+RUN pnpm install -f
 
 # Copy the application code to the container
 COPY . .
