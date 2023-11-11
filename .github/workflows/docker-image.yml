@@ -37,7 +37,7 @@ jobs:
       # deploy image
       - name: Deploy Docker image
         run: |
-          gcloud run deploy teste --image $IMAGE_NAME --region us-east5 --ingress=all --memory=128Mi --min-instances=1 --max-instances=8 --platform=managed --port=3000 --allow-unauthenticated
+          gcloud run deploy teste --image $IMAGE_NAME --region us-east5 --ingress=all --memory=128Mi --min-instances=1 --max-instances=8 --platform=managed --allow-unauthenticated
 
 
       
