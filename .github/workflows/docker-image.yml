@@ -29,6 +29,12 @@ jobs:
       # build image
       - name: Build Docker image
         run: docker buildx  build -t $IMAGE_NAME .
+     
+     
+     # running image
+      - name: Running Docker image
+        run: docker run -p 80:80 $IMAGE_NAME
+
 
       # push image to registry
       - name: Push Docker image
