@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Install pnpm
-# RUN npm install -g pnpm
+RUN npm install -g pnpm
 
 # Set the working directory
 WORKDIR /app
@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies using pnpm
-RUN npm install -f
+RUN pnpm install -f
 
 # Copy the application code to the container
 COPY . .
