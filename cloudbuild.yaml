@@ -9,6 +9,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'api-teste-gcp2', '--image', 'gcr.io/teste-1042/18-alpine', '--region', 'us-central1', '--platform', 'managed', '--port', '3000']
+  args: ['run', 'deploy', 'api-teste-gcp2', '--image', 'gcr.io/teste-1042/18-alpine', '--region', 'us-central1', '--platform', 'managed', '--port', '80']
 images:
 - gcr.io/teste-1042/18-alpine
