@@ -8,10 +8,10 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 # Copy package.json and pnpm-lock.yaml files to the container
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 
 # Install dependencies using pnpm
-RUN pnpm install
+RUN npm install -f
 
 # Copy the application code to the container
 COPY . .
@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the application
-CMD [ "pnpm", "run", "start:dev" ]
+CMD [ "npm", "run", "start:prod" ]
