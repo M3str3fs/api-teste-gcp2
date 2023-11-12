@@ -1,6 +1,9 @@
 # Base image
 FROM node:18-alpine
 
+# Install pnpm
+RUN npm install -g pnpm
+
 # Set the working directory
 WORKDIR /app
 
@@ -8,7 +11,7 @@ WORKDIR /app
 COPY package.json .
 
 # Install dependencies using pnpm
-RUN npm install -f
+RUN pnpm install
 
 # Copy the application code to the container
 COPY . .
@@ -17,4 +20,4 @@ COPY . .
 EXPOSE 8080
 
 # Start the application
-CMD [ "yarn", "start:prod" ]
+CMD [ "pnpm", "run", "start:dev" ]
