@@ -39,6 +39,6 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   const port = configService.get('PORT');
   console.log(`servidor rodando na porta ${port}`);
-  await app.listen(port || 8080);
+  await app.listen(port);
 }
 bootstrap();
