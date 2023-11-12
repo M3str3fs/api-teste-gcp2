@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package.json .
 
 # Install dependencies using pnpm
-RUN pnpm install
+RUN pnpm install -f
 
 # Copy the application code to the container
 COPY . .
