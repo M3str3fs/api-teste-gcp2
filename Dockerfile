@@ -14,7 +14,7 @@ RUN npm install -f
 COPY . .
 
 # Expose the port that the application will be running on
-EXPOSE 3000
+EXPOSE 8080
 
 # Start the application
 CMD [ "yarn", "start:prod" ]
