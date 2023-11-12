@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: gcp-prod
     env:
-      IMAGE_NAME: gcr.io/${{secrets.GCP_PROJECT_ID}}/site:latest
+      IMAGE_NAME: gcr.io/${{secrets.GCP_PROJECT_ID}}/node:18-alpine
     steps:
       # Git checkout
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
 
       # build image
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME .
+        run: docker buildx build --platform linux/amd64 -t $IMAGE_NAME .
 
 
       # push image to registry
