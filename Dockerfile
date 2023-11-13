@@ -10,6 +10,9 @@ WORKDIR /app
 # Copy package.json and pnpm-lock.yaml files to the container
 COPY package.json .
 
+# Limpar o cache do npm (antes de copiar todos os arquivos)
+RUN npm cache clean --force
+
 # Install dependencies using pnpm
 RUN pnpm install -f
 
