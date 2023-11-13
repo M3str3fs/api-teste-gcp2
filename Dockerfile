@@ -10,11 +10,13 @@ WORKDIR /app
 # Copy package.json and pnpm-lock.yaml files to the container
 COPY package.json .
 
-# Limpar o cache do npm (antes de copiar todos os arquivos)
-RUN npm cache clean --force
-
 # Install dependencies using pnpm
 RUN pnpm install -f
+
+# Install jsonwebtoken explicitly
+RUN pnpm install jsonwebtoken
+
+RUN pnpm i @nestjs/mapped-types
 
 # Copy the application code to the container
 COPY . .
