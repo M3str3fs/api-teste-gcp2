@@ -16,7 +16,7 @@ RUN pnpm install -f
 # Install jsonwebtoken explicitly
 RUN pnpm install jsonwebtoken
 
-RUN pnpm i @nestjs/mapped-types
+RUN pnpm install @nestjs/mapped-types -f
 
 # Copy the application code to the container
 COPY . .
