@@ -1,18 +1,8 @@
-import { Controller, Get, Injectable } from '@nestjs/common';
-import { AppService } from './app.service';
+import { StorageFile } from './storage-file';
 import { DownloadResponse, Storage } from '@google-cloud/storage';
-import { StorageFile } from './modules/storage/storage-file';
-import StorageConfig from './modules/storage/storage-config';
-
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-}
+import { Injectable } from '@nestjs/common';
+import StorageConfig from './storage-config';
+ 
 
 @Injectable()
 export class StorageService {
@@ -24,7 +14,7 @@ export class StorageService {
       projectId: StorageConfig.projectId,
       credentials: {
         client_email: StorageConfig.client_email,
-        private_key: StorageConfig.private_key,
+        private_key: process.env.PRIVATE_KEY.split(String.raw`\n`).join('\n'),
       },
     });
 
@@ -35,20 +25,37 @@ export class StorageService {
     path: string,
     contentType: string,
     media: Buffer,
-    metadata: { [key: string]: strings }[],
-  ) {
+    metadata: { [key: string]: string }[],
+  ): Promise<string> {
     const object = metadata.reduce((obj, item) => Object.assign(obj, item), {});
     const file = this.storage.bucket(this.bucket).file(path);
     const stream = file.createWriteStream();
-    stream.on('finish', async () => {
-      return await file.setMetadata({
-        metadata: object,
+
+    return new Promise<string>((resolve, reject) => {
+      // Adicione um ouvinte para o evento "finish" no stream
+      stream.on('finish', async () => {
+        try {
+          // Defina metadados no arquivo
+          await file.setMetadata({
+            metadata: object,
+          });
+          // Obtém o ID do objeto
+          const [metadata] = await file.getMetadata();
+          const objectId = metadata.id;
+          console.log(metadata);
+          resolve(objectId);
+        } catch (error) {
+          reject(error);
+        }
       });
+
+      // Envie o buffer para o stream
+
+      stream.end(media);
     });
-    stream.end(media);
   }
 
-  async delete(path: string) {
+  async delete(path: string): Promise<void> {
     await this.storage
       .bucket(this.bucket)
       .file(path)
@@ -80,9 +87,7 @@ export class StorageService {
 
     const storageFile = new StorageFile();
     storageFile.buffer = buffer;
-    // eslint-disable-next-line prettier/prettier
-    storageFile.metadata = new Map<any, any>(Object.entries(metadata || {})
-    );
+    storageFile.metadata = new Map<any, any>(Object.entries(metadata || {}));
     storageFile.contentType = storageFile.metadata.get('contentType');
     return storageFile;
   }

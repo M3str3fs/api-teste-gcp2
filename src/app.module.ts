@@ -11,6 +11,8 @@ import { winstonConfig } from './config/winston.config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerInterceptor } from './common/interceptors/logger.interceptor';
 import { HealthModule } from './modules/health/health.module';
+import { StorageModule } from './modules/storage/storage.module';
+import { MediaModule } from './modules/media/media.module';
 
 @Module({
   imports: [
@@ -34,6 +36,8 @@ import { HealthModule } from './modules/health/health.module';
     UsersModule,
     RolesModule,
     HealthModule,
+    StorageModule,
+    MediaModule,
   ],
   controllers: [],
   providers: [
